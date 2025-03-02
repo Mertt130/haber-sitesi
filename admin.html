@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Paneli</h1>
+    </header>
+    <main>
+        <form id="haberForm">
+            <label for="title">Haber Başlığı:</label>
+            <input type="text" id="title" required>
+            
+            <label for="content">Haber İçeriği:</label>
+            <textarea id="content" required></textarea>
+            
+            <label for="fontColor">Yazı Rengi:</label>
+            <input type="color" id="fontColor" value="#000000">
+            
+            <label for="fontSize">Yazı Boyutu:</label>
+            <input type="number" id="fontSize" min="10" max="50" value="16">
+            
+            <label for="category">Kategori:</label>
+            <select id="category">
+                <option value="Gündem">Gündem</option>
+                <option value="Spor">Spor</option>
+                <option value="Teknoloji">Teknoloji</option>
+            </select>
+            
+            <label for="image">Haber Resmi:</label>
+            <input type="file" id="image" accept="image/*">
+            
+            <label for="videoUrl">Video URL:</label>
+            <input type="url" id="videoUrl" placeholder="YouTube veya başka bir video URL">
+            
+            <button type="submit">Haberi Yayınla</button>
+        </form>
+    </main>
+    
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="admin.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="admin.js"></script>
+
+</body>
+</html>
