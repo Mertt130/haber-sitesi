@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haber Sitesi</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -12,6 +14,12 @@
         gtag('js', new Date());
         gtag('config', 'GA_MEASUREMENT_ID');
     </script>
+
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
 </head>
 <body>
     <header>
@@ -47,7 +55,29 @@
     <footer>
         <p>&copy; 2025 Haber Sitesi. Tüm hakları saklıdır.</p>
     </footer>
+
+    <!-- Firebase Config -->
+    <script type="module">
+        // Firebase modüllerini içe aktar
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+
+        // Firebase yapılandırması
+        const firebaseConfig = {
+            apiKey: "AIzaSyDU3R60hWlke_pOYKvtAU-Shc1mPobb_gI",
+            authDomain: "habersitesi-49c43.firebaseapp.com",
+            projectId: "habersitesi-49c43",
+            storageBucket: "habersitesi-49c43.appspot.com",
+            messagingSenderId: "330691528022",
+            appId: "1:330691528022:web:96d0145cdcf3f9788dc2f7",
+            measurementId: "G-5L46F4RDSY"
+        };
+
+        // Firebase'i başlat
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+
     <script src="script.js"></script>
-<script type="module" src="firebase.js"></script>
 </body>
 </html>
