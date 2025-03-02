@@ -1,39 +1,46 @@
+import { db, storage } from "./firebase-config.js";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 document.getElementById("newsForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    // Form verilerini al
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
     const textColor = document.getElementById("textColor").value;
-    const fontSize = document.getElementById("fontSize").value;
+    const textSize = document.getElementById("textSize").value;
     const category = document.getElementById("category").value;
     const videoUrl = document.getElementById("videoUrl").value;
     const imageFile = document.getElementById("image").files[0];
 
-    // Firebase Firestore'a veri ekle
-    try {
-        let imageUrl = "";
-        if (imageFile) {
-            const storageRef = storage.ref('news_images/' + imageFile.name);
-            await storageRef.put(imageFile);
-            imageUrl = await storageRef.getDownloadURL();
-        }
+    if (!title || !content) {
+        alert("Başlık ve içerik boş bırakılamaz!");
+        return;
+    }
 
-        await db.collection("news").add({
-            title: title,
-            content: content,
-            textColor: textColor,
-            fontSize: fontSize,
-            category: category,
-            videoUrl: videoUrl,
-            imageUrl: imageUrl,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    let imageUrl = "";
+    if (imageFile) {
+        const storageRef = ref(storage, `news_images/${imageFile.name}`);
+        await uploadBytes(storageRef, imageFile);
+        imageUrl = await getDownloadURL(storageRef);
+    }
+
+    try {
+        await addDoc(collection(db, "news"), {
+            title,
+            content,
+            textColor,
+            textSize,
+            category,
+            videoUrl,
+            imageUrl,
+            timestamp: serverTimestamp()
         });
 
-        alert("Haber başarıyla yayınlandı!");
+        alert("Haber başarıyla eklendi!");
         document.getElementById("newsForm").reset();
     } catch (error) {
-        console.error("Hata:", error);
-        alert("Haber yayınlanırken bir hata oluştu.");
+        console.error("Hata oluştu:", error);
+        alert("Haber eklenirken hata oluştu!");
     }
 });
