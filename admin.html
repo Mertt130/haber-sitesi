@@ -3,49 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Paneli</title>
+    <title>Haber Sitesi Admin Paneli</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    <h1>Admin Paneli</h1>
+    <div class="container-fluid">
+        <!-- Login Form -->
+        <div id="loginForm" class="auth-form">
+            <h2>Admin Girişi</h2>
+            <form id="adminLogin">
+                <div class="mb-3">
+                    <input type="email" id="adminEmail" class="form-control" placeholder="E-posta" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" id="adminPassword" class="form-control" placeholder="Şifre" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Giriş Yap</button>
+            </form>
+        </div>
 
-    <form id="newsForm">
-        <label for="title">Haber Başlığı:</label>
-        <input type="text" id="title" required>
+        <!-- Admin Panel -->
+        <div id="adminPanel" class="d-none">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Admin Paneli</a>
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="#" data-page="dashboard">Dashboard</a>
+                        <a class="nav-link" href="#" data-page="news">Haberler</a>
+                        <a class="nav-link" href="#" data-page="categories">Kategoriler</a>
+                        <a class="nav-link" href="#" data-page="comments">Yorumlar</a>
+                        <button id="logoutBtn" class="btn btn-outline-light ms-2">Çıkış</button>
+                    </div>
+                </div>
+            </nav>
 
-        <label for="content">Haber İçeriği:</label>
-        <textarea id="content" required></textarea>
+            <!-- Dashboard -->
+            <div id="dashboard" class="admin-page">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Toplam Haber</h5>
+                                <h2 id="totalNews">0</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Toplam Yorum</h5>
+                                <h2 id="totalComments">0</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Bugünkü Görüntülenme</h5>
+                                <h2 id="todayViews">0</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Aktif Kullanıcılar</h5>
+                                <h2 id="activeUsers">0</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <label for="textColor">Yazı Rengi:</label>
-        <input type="color" id="textColor">
+            <!-- Haber Ekleme Formu -->
+            <div id="newsForm" class="admin-page">
+                <h3>Yeni Haber Ekle</h3>
+                <form id="addNewsForm">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="title">Haber Başlığı:</label>
+                                <input type="text" id="title" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="content">Haber İçeriği:</label>
+                                <textarea id="content" class="form-control" rows="10" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="category">Kategori:</label>
+                                <select id="category" class="form-control" required>
+                                    <option value="">Kategori Seçin</option>
+                                </select>
+                                <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addCategoryBtn">
+                                    Yeni Kategori Ekle
+                                </button>
+                            </div>
+                            <div class="mb-3">
+                                <label for="image">Haber Görseli:</label>
+                                <input type="file" id="image" class="form-control" accept="image/*">
+                                <div id="imagePreview" class="mt-2"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="videoUrl">Video URL:</label>
+                                <input type="url" id="videoUrl" class="form-control" placeholder="YouTube veya başka bir video URL">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tags">Etiketler:</label>
+                                <input type="text" id="tags" class="form-control" placeholder="Etiketleri virgülle ayırın">
+                            </div>
+                            <div class="mb-3">
+                                <label for="publishDate">Yayın Tarihi:</label>
+                                <input type="datetime-local" id="publishDate" class="form-control">
+                            </div>
+                            <div class="form-check mb-3">
+                                <input type="checkbox" id="featured" class="form-check-input">
+                                <label class="form-check-label" for="featured">Öne Çıkan Haber</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input type="checkbox" id="breaking" class="form-check-input">
+                                <label class="form-check-label" for="breaking">Son Dakika</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Haberi Yayınla</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-        <label for="textSize">Yazı Boyutu:</label>
-        <input type="number" id="textSize" value="16">
-
-        <label for="category">Kategori:</label>
-        <select id="category">
-            <option value="Gündem">Gündem</option>
-            <option value="Spor">Spor</option>
-            <option value="Teknoloji">Teknoloji</option>
-        </select>
-
-        <label for="image">Haber Resmi:</label>
-        <input type="file" id="image" accept="image/*">
-
-        <label for="videoUrl">Video URL:</label>
-        <input type="url" id="videoUrl" placeholder="YouTube veya başka bir video URL">
-
-        <button type="submit">Haberi Yayınla</button>
-    </form>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js"></script>
-
-    <!-- Firebase Yapılandırması ve Admin JS -->
-    <script src="firebase-config.js"></script>
-    <script src="admin.js"></script>
+    <!-- Bootstrap ve diğer gerekli scriptler -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Firebase Modülleri -->
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="admin.js"></script>
 </body>
 </html>
 

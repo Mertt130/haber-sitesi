@@ -1,8 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: #f8f9fa;
+    background-color: #f8f9fa;
 }
 
 header {
@@ -45,4 +45,256 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Breaking News Ticker */
+.breaking-news-ticker {
+    overflow: hidden;
+    position: relative;
+}
+
+.ticker-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ticker-item {
+    display: none;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.ticker-item:first-child {
+    display: block;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Featured News */
+.featured-news {
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.featured-news:hover {
+    transform: translateY(-5px);
+}
+
+.featured-news img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.featured-news .card-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+/* Latest News Cards */
+.card {
+    transition: transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+/* Most Read News */
+#mostReadNews img {
+    border-radius: 4px;
+}
+
+#mostReadNews h6 {
+    color: #333;
+    transition: color 0.2s;
+}
+
+#mostReadNews a:hover h6 {
+    color: #007bff;
+}
+
+/* Categories List */
+.list-group-item {
+    transition: background-color 0.2s;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Weather Widget */
+#weatherWidget {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+#weatherWidget h3 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* News Modal */
+.modal-content {
+    border: none;
+    border-radius: 8px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #eee;
+}
+
+.modal-body img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.news-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+/* Comments Section */
+.comment {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+/* Footer */
+footer {
+    margin-top: 4rem;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    transition: opacity 0.2s;
+}
+
+.social-links a:hover {
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .featured-news img {
+        height: 300px;
+    }
+
+    .card-img-top {
+        height: 180px;
+    }
+
+    .featured-news .card-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .featured-news img {
+        height: 200px;
+    }
+
+    .card-img-top {
+        height: 160px;
+    }
+
+    .featured-news .card-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Loading States */
+.loading {
+    position: relative;
+    opacity: 0.7;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Search Results */
+.search-highlight {
+    background-color: yellow;
+    padding: 0 2px;
+}
+
+/* Category Badge */
+.category-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Breaking News Badge */
+.breaking-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #dc3545;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }

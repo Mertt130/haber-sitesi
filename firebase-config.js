@@ -1,15 +1,26 @@
-// Firebase SDK'yı başlat
+// Firebase yapılandırması
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+import { getAuth } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+import { getStorage } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js';
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js';
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDUR36OhWlke_poYKvtAU-SHc1mPobb_gI",
-  authDomain: "habersitesi-49c43.firebaseapp.com",
-  projectId: "habersitesi-49c43",
-  storageBucket: "habersitesi-49c43.appspot.com",
-  messagingSenderId: "330691528022",
-  appId: "1:330691528022:web:96d0145cdcf3f9788dc2f7",
-  measurementId: "G-5L46F4RDSY"
+    // Firebase console'dan alınan yapılandırma bilgilerini buraya ekleyin
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID",
+    measurementId: "YOUR_MEASUREMENT_ID"
 };
 
-// Firebase başlat
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const storage = firebase.storage();
+// Firebase'i başlat
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const analytics = getAnalytics(app);
+
+export { app, auth, db, storage, analytics };
